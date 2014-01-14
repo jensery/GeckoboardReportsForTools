@@ -1,0 +1,1046 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TCIPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TCIPModelStoreContainer">
+          <EntitySet Name="AdsUser" EntityType="TCIPModel.Store.AdsUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Application" EntityType="TCIPModel.Store.Application" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ApplicationCIP" EntityType="TCIPModel.Store.ApplicationCIP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Browser" EntityType="TCIPModel.Store.Browser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CommandCIP" EntityType="TCIPModel.Store.CommandCIP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CommandType" EntityType="TCIPModel.Store.CommandType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ExternalComponent" EntityType="TCIPModel.Store.ExternalComponent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Language" EntityType="TCIPModel.Store.Language" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Platform" EntityType="TCIPModel.Store.Platform" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PlatformArchitecture" EntityType="TCIPModel.Store.PlatformArchitecture" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PlatformOS" EntityType="TCIPModel.Store.PlatformOS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PlatformSP" EntityType="TCIPModel.Store.PlatformSP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServiceValue" EntityType="TCIPModel.Store.ServiceValue" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StatusValue" EntityType="TCIPModel.Store.StatusValue" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ApplicationCIP_AdsUser" Association="TCIPModel.Store.FK_ApplicationCIP_AdsUser">
+            <End Role="AdsUser" EntitySet="AdsUser" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_Application" Association="TCIPModel.Store.FK_ApplicationCIP_Application">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_Browser" Association="TCIPModel.Store.FK_ApplicationCIP_Browser">
+            <End Role="Browser" EntitySet="Browser" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_Language" Association="TCIPModel.Store.FK_ApplicationCIP_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_Platform" Association="TCIPModel.Store.FK_ApplicationCIP_Platform">
+            <End Role="Platform" EntitySet="Platform" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_ServiceValue" Association="TCIPModel.Store.FK_ApplicationCIP_ServiceValue">
+            <End Role="ServiceValue" EntitySet="ServiceValue" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommandCIP_ApplicationCIP" Association="TCIPModel.Store.FK_CommandCIP_ApplicationCIP">
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIP" />
+            <End Role="CommandCIP" EntitySet="CommandCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommandCIP_CommandType" Association="TCIPModel.Store.FK_CommandCIP_CommandType">
+            <End Role="CommandType" EntitySet="CommandType" />
+            <End Role="CommandCIP" EntitySet="CommandCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommandCIP_ExternalComponent" Association="TCIPModel.Store.FK_CommandCIP_ExternalComponent">
+            <End Role="ExternalComponent" EntitySet="ExternalComponent" />
+            <End Role="CommandCIP" EntitySet="CommandCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommandCIP_StatusValue" Association="TCIPModel.Store.FK_CommandCIP_StatusValue">
+            <End Role="StatusValue" EntitySet="StatusValue" />
+            <End Role="CommandCIP" EntitySet="CommandCIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platform_PlatformArchitecture" Association="TCIPModel.Store.FK_Platform_PlatformArchitecture">
+            <End Role="PlatformArchitecture" EntitySet="PlatformArchitecture" />
+            <End Role="Platform" EntitySet="Platform" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platform_PlatformOS" Association="TCIPModel.Store.FK_Platform_PlatformOS">
+            <End Role="PlatformOS" EntitySet="PlatformOS" />
+            <End Role="Platform" EntitySet="Platform" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platform_PlatformSP" Association="TCIPModel.Store.FK_Platform_PlatformSP">
+            <End Role="PlatformSP" EntitySet="PlatformSP" />
+            <End Role="Platform" EntitySet="Platform" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AdsUser">
+          <Key>
+            <PropertyRef Name="AdsUserID" />
+          </Key>
+          <Property Name="AdsUserID" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="FullUserName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ManagerPriv" Type="bit" Nullable="false" />
+          <Property Name="TriagePriv" Type="bit" Nullable="false" />
+          <Property Name="TestEngineerPriv" Type="bit" Nullable="false" />
+          <Property Name="TesterPriv" Type="bit" Nullable="false" />
+          <Property Name="AdminPriv" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+            <PropertyRef Name="VersionID" />
+          </Key>
+          <Property Name="ApplicationID" Type="nvarchar" Nullable="false" MaxLength="45" />
+          <Property Name="VersionID" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ApplicationCIP">
+          <Key>
+            <PropertyRef Name="ApplicationCIPID" />
+          </Key>
+          <Property Name="ApplicationCIPID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ADSUserName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="45" />
+          <Property Name="ApplicationVersion" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="ElapsedTime" Type="bigint" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Server" Type="nvarchar" MaxLength="45" />
+          <Property Name="MachineName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Service" Type="nvarchar" MaxLength="45" />
+          <Property Name="NicType" Type="ntext" />
+          <Property Name="UserDomainName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Platform" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Language" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Browser" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Browser">
+          <Key>
+            <PropertyRef Name="BrowserID" />
+          </Key>
+          <Property Name="BrowserID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LongName" Type="nvarchar" MaxLength="255" />
+          <Property Name="BrowserVersion" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Engine" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExtraComponents" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="CommandCIP">
+          <Key>
+            <PropertyRef Name="CommandCIPID" />
+          </Key>
+          <Property Name="CommandCIPID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Application" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CommandName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CommandType" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ItemCount" Type="bigint" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ElapsedTime" Type="bigint" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="255" />
+          <Property Name="Component" Type="uniqueidentifier" />
+          <Property Name="ComponentMessage" Type="ntext" />
+          <Property Name="CallStack" Type="ntext" />
+        </EntityType>
+        <EntityType Name="CommandType">
+          <Key>
+            <PropertyRef Name="CommandTypeID" />
+          </Key>
+          <Property Name="CommandTypeID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ExternalComponent">
+          <Key>
+            <PropertyRef Name="ExternalComponentID" />
+          </Key>
+          <Property Name="ExternalComponentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ComponentName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ComponentVersion" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LongName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Platform">
+          <Key>
+            <PropertyRef Name="PlatformID" />
+          </Key>
+          <Property Name="PlatformID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="OperatingSystem" Type="nvarchar" MaxLength="50" />
+          <Property Name="OSVersion" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PlatformName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Architecture" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServicePack" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PlatformArchitecture">
+          <Key>
+            <PropertyRef Name="PlatformArchitectureID" />
+          </Key>
+          <Property Name="PlatformArchitectureID" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PlatformOS">
+          <Key>
+            <PropertyRef Name="PlatformOSID" />
+          </Key>
+          <Property Name="PlatformOSID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ShortName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PlatformSP">
+          <Key>
+            <PropertyRef Name="PlatformSPID" />
+          </Key>
+          <Property Name="PlatformSPID" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ServiceValue">
+          <Key>
+            <PropertyRef Name="ServiceValueID" />
+          </Key>
+          <Property Name="ServiceValueID" Type="nvarchar" Nullable="false" MaxLength="45" />
+          <Property Name="Server" Type="nvarchar" MaxLength="255" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="StatusValue">
+          <Key>
+            <PropertyRef Name="StatusValueID" />
+          </Key>
+          <Property Name="StatusValueID" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_ApplicationCIP_AdsUser">
+          <End Role="AdsUser" Type="TCIPModel.Store.AdsUser" Multiplicity="1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.Store.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdsUser">
+              <PropertyRef Name="AdsUserID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="ADSUserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_Application">
+          <End Role="Application" Type="TCIPModel.Store.Application" Multiplicity="1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.Store.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationID" />
+              <PropertyRef Name="VersionID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="ApplicationName" />
+              <PropertyRef Name="ApplicationVersion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_Browser">
+          <End Role="Browser" Type="TCIPModel.Store.Browser" Multiplicity="0..1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.Store.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Browser">
+              <PropertyRef Name="BrowserID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="Browser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_Language">
+          <End Role="Language" Type="TCIPModel.Store.Language" Multiplicity="1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.Store.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="Language" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_Platform">
+          <End Role="Platform" Type="TCIPModel.Store.Platform" Multiplicity="1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.Store.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platform">
+              <PropertyRef Name="PlatformID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="Platform" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_ServiceValue">
+          <End Role="ServiceValue" Type="TCIPModel.Store.ServiceValue" Multiplicity="0..1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.Store.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceValue">
+              <PropertyRef Name="ServiceValueID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="Service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommandCIP_ApplicationCIP">
+          <End Role="ApplicationCIP" Type="TCIPModel.Store.ApplicationCIP" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommandCIP" Type="TCIPModel.Store.CommandCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationCIP">
+              <PropertyRef Name="ApplicationCIPID" />
+            </Principal>
+            <Dependent Role="CommandCIP">
+              <PropertyRef Name="Application" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommandCIP_CommandType">
+          <End Role="CommandType" Type="TCIPModel.Store.CommandType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommandCIP" Type="TCIPModel.Store.CommandCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommandType">
+              <PropertyRef Name="CommandTypeID" />
+            </Principal>
+            <Dependent Role="CommandCIP">
+              <PropertyRef Name="CommandType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommandCIP_ExternalComponent">
+          <End Role="ExternalComponent" Type="TCIPModel.Store.ExternalComponent" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommandCIP" Type="TCIPModel.Store.CommandCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalComponent">
+              <PropertyRef Name="ExternalComponentID" />
+            </Principal>
+            <Dependent Role="CommandCIP">
+              <PropertyRef Name="Component" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommandCIP_StatusValue">
+          <End Role="StatusValue" Type="TCIPModel.Store.StatusValue" Multiplicity="1" />
+          <End Role="CommandCIP" Type="TCIPModel.Store.CommandCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusValue">
+              <PropertyRef Name="StatusValueID" />
+            </Principal>
+            <Dependent Role="CommandCIP">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platform_PlatformArchitecture">
+          <End Role="PlatformArchitecture" Type="TCIPModel.Store.PlatformArchitecture" Multiplicity="0..1" />
+          <End Role="Platform" Type="TCIPModel.Store.Platform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlatformArchitecture">
+              <PropertyRef Name="PlatformArchitectureID" />
+            </Principal>
+            <Dependent Role="Platform">
+              <PropertyRef Name="Architecture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platform_PlatformOS">
+          <End Role="PlatformOS" Type="TCIPModel.Store.PlatformOS" Multiplicity="0..1" />
+          <End Role="Platform" Type="TCIPModel.Store.Platform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlatformOS">
+              <PropertyRef Name="PlatformOSID" />
+            </Principal>
+            <Dependent Role="Platform">
+              <PropertyRef Name="OperatingSystem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platform_PlatformSP">
+          <End Role="PlatformSP" Type="TCIPModel.Store.PlatformSP" Multiplicity="0..1" />
+          <End Role="Platform" Type="TCIPModel.Store.Platform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlatformSP">
+              <PropertyRef Name="PlatformSPID" />
+            </Principal>
+            <Dependent Role="Platform">
+              <PropertyRef Name="ServicePack" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TCIPModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TCIPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdsUsers" EntityType="TCIPModel.AdsUser" />
+          <EntitySet Name="Applications" EntityType="TCIPModel.Application" />
+          <EntitySet Name="ApplicationCIPs" EntityType="TCIPModel.ApplicationCIP" />
+          <EntitySet Name="Browsers" EntityType="TCIPModel.Browser" />
+          <EntitySet Name="CommandCIPs" EntityType="TCIPModel.CommandCIP" />
+          <EntitySet Name="CommandTypes" EntityType="TCIPModel.CommandType" />
+          <EntitySet Name="ExternalComponents" EntityType="TCIPModel.ExternalComponent" />
+          <EntitySet Name="Languages" EntityType="TCIPModel.Language" />
+          <EntitySet Name="Platforms" EntityType="TCIPModel.Platform" />
+          <EntitySet Name="PlatformArchitectures" EntityType="TCIPModel.PlatformArchitecture" />
+          <EntitySet Name="PlatformOS" EntityType="TCIPModel.PlatformO" />
+          <EntitySet Name="PlatformSPs" EntityType="TCIPModel.PlatformSP" />
+          <EntitySet Name="ServiceValues" EntityType="TCIPModel.ServiceValue" />
+          <EntitySet Name="StatusValues" EntityType="TCIPModel.StatusValue" />
+          <AssociationSet Name="FK_ApplicationCIP_AdsUser" Association="TCIPModel.FK_ApplicationCIP_AdsUser">
+            <End Role="AdsUser" EntitySet="AdsUsers" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_Application" Association="TCIPModel.FK_ApplicationCIP_Application">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_Browser" Association="TCIPModel.FK_ApplicationCIP_Browser">
+            <End Role="Browser" EntitySet="Browsers" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_Language" Association="TCIPModel.FK_ApplicationCIP_Language">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_Platform" Association="TCIPModel.FK_ApplicationCIP_Platform">
+            <End Role="Platform" EntitySet="Platforms" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationCIP_ServiceValue" Association="TCIPModel.FK_ApplicationCIP_ServiceValue">
+            <End Role="ServiceValue" EntitySet="ServiceValues" />
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommandCIP_ApplicationCIP" Association="TCIPModel.FK_CommandCIP_ApplicationCIP">
+            <End Role="ApplicationCIP" EntitySet="ApplicationCIPs" />
+            <End Role="CommandCIP" EntitySet="CommandCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommandCIP_CommandType" Association="TCIPModel.FK_CommandCIP_CommandType">
+            <End Role="CommandType" EntitySet="CommandTypes" />
+            <End Role="CommandCIP" EntitySet="CommandCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommandCIP_ExternalComponent" Association="TCIPModel.FK_CommandCIP_ExternalComponent">
+            <End Role="ExternalComponent" EntitySet="ExternalComponents" />
+            <End Role="CommandCIP" EntitySet="CommandCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommandCIP_StatusValue" Association="TCIPModel.FK_CommandCIP_StatusValue">
+            <End Role="StatusValue" EntitySet="StatusValues" />
+            <End Role="CommandCIP" EntitySet="CommandCIPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platform_PlatformArchitecture" Association="TCIPModel.FK_Platform_PlatformArchitecture">
+            <End Role="PlatformArchitecture" EntitySet="PlatformArchitectures" />
+            <End Role="Platform" EntitySet="Platforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platform_PlatformOS" Association="TCIPModel.FK_Platform_PlatformOS">
+            <End Role="PlatformOS" EntitySet="PlatformOS" />
+            <End Role="Platform" EntitySet="Platforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Platform_PlatformSP" Association="TCIPModel.FK_Platform_PlatformSP">
+            <End Role="PlatformSP" EntitySet="PlatformSPs" />
+            <End Role="Platform" EntitySet="Platforms" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AdsUser">
+          <Key>
+            <PropertyRef Name="AdsUserID" />
+          </Key>
+          <Property Name="AdsUserID" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="FullUserName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ManagerPriv" Type="Boolean" Nullable="false" />
+          <Property Name="TriagePriv" Type="Boolean" Nullable="false" />
+          <Property Name="TestEngineerPriv" Type="Boolean" Nullable="false" />
+          <Property Name="TesterPriv" Type="Boolean" Nullable="false" />
+          <Property Name="AdminPriv" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ApplicationCIPs" Relationship="TCIPModel.FK_ApplicationCIP_AdsUser" FromRole="AdsUser" ToRole="ApplicationCIP" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+            <PropertyRef Name="VersionID" />
+          </Key>
+          <Property Name="ApplicationID" Type="String" Nullable="false" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Name="VersionID" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Memo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ApplicationCIPs" Relationship="TCIPModel.FK_ApplicationCIP_Application" FromRole="Application" ToRole="ApplicationCIP" />
+        </EntityType>
+        <EntityType Name="ApplicationCIP">
+          <Key>
+            <PropertyRef Name="ApplicationCIPID" />
+          </Key>
+          <Property Name="ApplicationCIPID" Type="Guid" Nullable="false" />
+          <Property Name="ADSUserName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationVersion" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="ElapsedTime" Type="Int64" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="Server" Type="String" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Name="MachineName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Service" Type="String" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Name="NicType" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UserDomainName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Platform" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Language" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Browser" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="AdsUser" Relationship="TCIPModel.FK_ApplicationCIP_AdsUser" FromRole="ApplicationCIP" ToRole="AdsUser" />
+          <NavigationProperty Name="Application" Relationship="TCIPModel.FK_ApplicationCIP_Application" FromRole="ApplicationCIP" ToRole="Application" />
+          <NavigationProperty Name="Browser1" Relationship="TCIPModel.FK_ApplicationCIP_Browser" FromRole="ApplicationCIP" ToRole="Browser" />
+          <NavigationProperty Name="Language1" Relationship="TCIPModel.FK_ApplicationCIP_Language" FromRole="ApplicationCIP" ToRole="Language" />
+          <NavigationProperty Name="Platform1" Relationship="TCIPModel.FK_ApplicationCIP_Platform" FromRole="ApplicationCIP" ToRole="Platform" />
+          <NavigationProperty Name="ServiceValue" Relationship="TCIPModel.FK_ApplicationCIP_ServiceValue" FromRole="ApplicationCIP" ToRole="ServiceValue" />
+          <NavigationProperty Name="CommandCIPs" Relationship="TCIPModel.FK_CommandCIP_ApplicationCIP" FromRole="ApplicationCIP" ToRole="CommandCIP" />
+        </EntityType>
+        <EntityType Name="Browser">
+          <Key>
+            <PropertyRef Name="BrowserID" />
+          </Key>
+          <Property Name="BrowserID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LongName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="BrowserVersion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Engine" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExtraComponents" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ApplicationCIPs" Relationship="TCIPModel.FK_ApplicationCIP_Browser" FromRole="Browser" ToRole="ApplicationCIP" />
+        </EntityType>
+        <EntityType Name="CommandCIP">
+          <Key>
+            <PropertyRef Name="CommandCIPID" />
+          </Key>
+          <Property Name="CommandCIPID" Type="Guid" Nullable="false" />
+          <Property Name="Application" Type="Guid" Nullable="false" />
+          <Property Name="CommandName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CommandType" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ItemCount" Type="Int64" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ElapsedTime" Type="Int64" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Component" Type="Guid" />
+          <Property Name="ComponentMessage" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CallStack" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ApplicationCIP" Relationship="TCIPModel.FK_CommandCIP_ApplicationCIP" FromRole="CommandCIP" ToRole="ApplicationCIP" />
+          <NavigationProperty Name="CommandType1" Relationship="TCIPModel.FK_CommandCIP_CommandType" FromRole="CommandCIP" ToRole="CommandType" />
+          <NavigationProperty Name="ExternalComponent" Relationship="TCIPModel.FK_CommandCIP_ExternalComponent" FromRole="CommandCIP" ToRole="ExternalComponent" />
+          <NavigationProperty Name="StatusValue" Relationship="TCIPModel.FK_CommandCIP_StatusValue" FromRole="CommandCIP" ToRole="StatusValue" />
+        </EntityType>
+        <EntityType Name="CommandType">
+          <Key>
+            <PropertyRef Name="CommandTypeID" />
+          </Key>
+          <Property Name="CommandTypeID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CommandCIPs" Relationship="TCIPModel.FK_CommandCIP_CommandType" FromRole="CommandType" ToRole="CommandCIP" />
+        </EntityType>
+        <EntityType Name="ExternalComponent">
+          <Key>
+            <PropertyRef Name="ExternalComponentID" />
+          </Key>
+          <Property Name="ExternalComponentID" Type="Guid" Nullable="false" />
+          <Property Name="ComponentName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ComponentVersion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Memo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CommandCIPs" Relationship="TCIPModel.FK_CommandCIP_ExternalComponent" FromRole="ExternalComponent" ToRole="CommandCIP" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LongName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Memo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ApplicationCIPs" Relationship="TCIPModel.FK_ApplicationCIP_Language" FromRole="Language" ToRole="ApplicationCIP" />
+        </EntityType>
+        <EntityType Name="Platform">
+          <Key>
+            <PropertyRef Name="PlatformID" />
+          </Key>
+          <Property Name="PlatformID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="OperatingSystem" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="OSVersion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PlatformName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Architecture" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ServicePack" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ApplicationCIPs" Relationship="TCIPModel.FK_ApplicationCIP_Platform" FromRole="Platform" ToRole="ApplicationCIP" />
+          <NavigationProperty Name="PlatformArchitecture" Relationship="TCIPModel.FK_Platform_PlatformArchitecture" FromRole="Platform" ToRole="PlatformArchitecture" />
+          <NavigationProperty Name="PlatformO" Relationship="TCIPModel.FK_Platform_PlatformOS" FromRole="Platform" ToRole="PlatformOS" />
+          <NavigationProperty Name="PlatformSP" Relationship="TCIPModel.FK_Platform_PlatformSP" FromRole="Platform" ToRole="PlatformSP" />
+        </EntityType>
+        <EntityType Name="PlatformArchitecture">
+          <Key>
+            <PropertyRef Name="PlatformArchitectureID" />
+          </Key>
+          <Property Name="PlatformArchitectureID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Platforms" Relationship="TCIPModel.FK_Platform_PlatformArchitecture" FromRole="PlatformArchitecture" ToRole="Platform" />
+        </EntityType>
+        <EntityType Name="PlatformO">
+          <Key>
+            <PropertyRef Name="PlatformOSID" />
+          </Key>
+          <Property Name="PlatformOSID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ShortName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Platforms" Relationship="TCIPModel.FK_Platform_PlatformOS" FromRole="PlatformOS" ToRole="Platform" />
+        </EntityType>
+        <EntityType Name="PlatformSP">
+          <Key>
+            <PropertyRef Name="PlatformSPID" />
+          </Key>
+          <Property Name="PlatformSPID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Platforms" Relationship="TCIPModel.FK_Platform_PlatformSP" FromRole="PlatformSP" ToRole="Platform" />
+        </EntityType>
+        <EntityType Name="ServiceValue">
+          <Key>
+            <PropertyRef Name="ServiceValueID" />
+          </Key>
+          <Property Name="ServiceValueID" Type="String" Nullable="false" MaxLength="45" Unicode="true" FixedLength="false" />
+          <Property Name="Server" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Memo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ApplicationCIPs" Relationship="TCIPModel.FK_ApplicationCIP_ServiceValue" FromRole="ServiceValue" ToRole="ApplicationCIP" />
+        </EntityType>
+        <EntityType Name="StatusValue">
+          <Key>
+            <PropertyRef Name="StatusValueID" />
+          </Key>
+          <Property Name="StatusValueID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Memo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CommandCIPs" Relationship="TCIPModel.FK_CommandCIP_StatusValue" FromRole="StatusValue" ToRole="CommandCIP" />
+        </EntityType>
+        <Association Name="FK_ApplicationCIP_AdsUser">
+          <End Role="AdsUser" Type="TCIPModel.AdsUser" Multiplicity="1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdsUser">
+              <PropertyRef Name="AdsUserID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="ADSUserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_Application">
+          <End Role="Application" Type="TCIPModel.Application" Multiplicity="1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationID" />
+              <PropertyRef Name="VersionID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="ApplicationName" />
+              <PropertyRef Name="ApplicationVersion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_Browser">
+          <End Role="Browser" Type="TCIPModel.Browser" Multiplicity="0..1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Browser">
+              <PropertyRef Name="BrowserID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="Browser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_Language">
+          <End Role="Language" Type="TCIPModel.Language" Multiplicity="1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="Language" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_Platform">
+          <End Role="Platform" Type="TCIPModel.Platform" Multiplicity="1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platform">
+              <PropertyRef Name="PlatformID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="Platform" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationCIP_ServiceValue">
+          <End Role="ServiceValue" Type="TCIPModel.ServiceValue" Multiplicity="0..1" />
+          <End Role="ApplicationCIP" Type="TCIPModel.ApplicationCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceValue">
+              <PropertyRef Name="ServiceValueID" />
+            </Principal>
+            <Dependent Role="ApplicationCIP">
+              <PropertyRef Name="Service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommandCIP_ApplicationCIP">
+          <End Role="ApplicationCIP" Type="TCIPModel.ApplicationCIP" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommandCIP" Type="TCIPModel.CommandCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationCIP">
+              <PropertyRef Name="ApplicationCIPID" />
+            </Principal>
+            <Dependent Role="CommandCIP">
+              <PropertyRef Name="Application" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommandCIP_CommandType">
+          <End Role="CommandType" Type="TCIPModel.CommandType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommandCIP" Type="TCIPModel.CommandCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommandType">
+              <PropertyRef Name="CommandTypeID" />
+            </Principal>
+            <Dependent Role="CommandCIP">
+              <PropertyRef Name="CommandType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommandCIP_ExternalComponent">
+          <End Role="ExternalComponent" Type="TCIPModel.ExternalComponent" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CommandCIP" Type="TCIPModel.CommandCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExternalComponent">
+              <PropertyRef Name="ExternalComponentID" />
+            </Principal>
+            <Dependent Role="CommandCIP">
+              <PropertyRef Name="Component" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommandCIP_StatusValue">
+          <End Role="StatusValue" Type="TCIPModel.StatusValue" Multiplicity="1" />
+          <End Role="CommandCIP" Type="TCIPModel.CommandCIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusValue">
+              <PropertyRef Name="StatusValueID" />
+            </Principal>
+            <Dependent Role="CommandCIP">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platform_PlatformArchitecture">
+          <End Role="PlatformArchitecture" Type="TCIPModel.PlatformArchitecture" Multiplicity="0..1" />
+          <End Role="Platform" Type="TCIPModel.Platform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlatformArchitecture">
+              <PropertyRef Name="PlatformArchitectureID" />
+            </Principal>
+            <Dependent Role="Platform">
+              <PropertyRef Name="Architecture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platform_PlatformOS">
+          <End Role="PlatformOS" Type="TCIPModel.PlatformO" Multiplicity="0..1" />
+          <End Role="Platform" Type="TCIPModel.Platform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlatformOS">
+              <PropertyRef Name="PlatformOSID" />
+            </Principal>
+            <Dependent Role="Platform">
+              <PropertyRef Name="OperatingSystem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Platform_PlatformSP">
+          <End Role="PlatformSP" Type="TCIPModel.PlatformSP" Multiplicity="0..1" />
+          <End Role="Platform" Type="TCIPModel.Platform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlatformSP">
+              <PropertyRef Name="PlatformSPID" />
+            </Principal>
+            <Dependent Role="Platform">
+              <PropertyRef Name="ServicePack" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TCIPModelStoreContainer" CdmEntityContainer="TCIPEntities">
+          <EntitySetMapping Name="AdsUsers">
+            <EntityTypeMapping TypeName="TCIPModel.AdsUser">
+              <MappingFragment StoreEntitySet="AdsUser">
+                <ScalarProperty Name="AdsUserID" ColumnName="AdsUserID" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="FullUserName" ColumnName="FullUserName" />
+                <ScalarProperty Name="ManagerPriv" ColumnName="ManagerPriv" />
+                <ScalarProperty Name="TriagePriv" ColumnName="TriagePriv" />
+                <ScalarProperty Name="TestEngineerPriv" ColumnName="TestEngineerPriv" />
+                <ScalarProperty Name="TesterPriv" ColumnName="TesterPriv" />
+                <ScalarProperty Name="AdminPriv" ColumnName="AdminPriv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="TCIPModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationCIPs">
+            <EntityTypeMapping TypeName="TCIPModel.ApplicationCIP">
+              <MappingFragment StoreEntitySet="ApplicationCIP">
+                <ScalarProperty Name="ApplicationCIPID" ColumnName="ApplicationCIPID" />
+                <ScalarProperty Name="ADSUserName" ColumnName="ADSUserName" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="ApplicationVersion" ColumnName="ApplicationVersion" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Server" ColumnName="Server" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="NicType" ColumnName="NicType" />
+                <ScalarProperty Name="UserDomainName" ColumnName="UserDomainName" />
+                <ScalarProperty Name="Platform" ColumnName="Platform" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Browser" ColumnName="Browser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Browsers">
+            <EntityTypeMapping TypeName="TCIPModel.Browser">
+              <MappingFragment StoreEntitySet="Browser">
+                <ScalarProperty Name="BrowserID" ColumnName="BrowserID" />
+                <ScalarProperty Name="LongName" ColumnName="LongName" />
+                <ScalarProperty Name="BrowserVersion" ColumnName="BrowserVersion" />
+                <ScalarProperty Name="Engine" ColumnName="Engine" />
+                <ScalarProperty Name="ExtraComponents" ColumnName="ExtraComponents" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommandCIPs">
+            <EntityTypeMapping TypeName="TCIPModel.CommandCIP">
+              <MappingFragment StoreEntitySet="CommandCIP">
+                <ScalarProperty Name="CommandCIPID" ColumnName="CommandCIPID" />
+                <ScalarProperty Name="Application" ColumnName="Application" />
+                <ScalarProperty Name="CommandName" ColumnName="CommandName" />
+                <ScalarProperty Name="CommandType" ColumnName="CommandType" />
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ElapsedTime" ColumnName="ElapsedTime" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Component" ColumnName="Component" />
+                <ScalarProperty Name="ComponentMessage" ColumnName="ComponentMessage" />
+                <ScalarProperty Name="CallStack" ColumnName="CallStack" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommandTypes">
+            <EntityTypeMapping TypeName="TCIPModel.CommandType">
+              <MappingFragment StoreEntitySet="CommandType">
+                <ScalarProperty Name="CommandTypeID" ColumnName="CommandTypeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalComponents">
+            <EntityTypeMapping TypeName="TCIPModel.ExternalComponent">
+              <MappingFragment StoreEntitySet="ExternalComponent">
+                <ScalarProperty Name="ExternalComponentID" ColumnName="ExternalComponentID" />
+                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
+                <ScalarProperty Name="ComponentVersion" ColumnName="ComponentVersion" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="TCIPModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="LongName" ColumnName="LongName" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platforms">
+            <EntityTypeMapping TypeName="TCIPModel.Platform">
+              <MappingFragment StoreEntitySet="Platform">
+                <ScalarProperty Name="PlatformID" ColumnName="PlatformID" />
+                <ScalarProperty Name="OperatingSystem" ColumnName="OperatingSystem" />
+                <ScalarProperty Name="OSVersion" ColumnName="OSVersion" />
+                <ScalarProperty Name="PlatformName" ColumnName="PlatformName" />
+                <ScalarProperty Name="Architecture" ColumnName="Architecture" />
+                <ScalarProperty Name="ServicePack" ColumnName="ServicePack" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlatformArchitectures">
+            <EntityTypeMapping TypeName="TCIPModel.PlatformArchitecture">
+              <MappingFragment StoreEntitySet="PlatformArchitecture">
+                <ScalarProperty Name="PlatformArchitectureID" ColumnName="PlatformArchitectureID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlatformOS">
+            <EntityTypeMapping TypeName="TCIPModel.PlatformO">
+              <MappingFragment StoreEntitySet="PlatformOS">
+                <ScalarProperty Name="PlatformOSID" ColumnName="PlatformOSID" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlatformSPs">
+            <EntityTypeMapping TypeName="TCIPModel.PlatformSP">
+              <MappingFragment StoreEntitySet="PlatformSP">
+                <ScalarProperty Name="PlatformSPID" ColumnName="PlatformSPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceValues">
+            <EntityTypeMapping TypeName="TCIPModel.ServiceValue">
+              <MappingFragment StoreEntitySet="ServiceValue">
+                <ScalarProperty Name="ServiceValueID" ColumnName="ServiceValueID" />
+                <ScalarProperty Name="Server" ColumnName="Server" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusValues">
+            <EntityTypeMapping TypeName="TCIPModel.StatusValue">
+              <MappingFragment StoreEntitySet="StatusValue">
+                <ScalarProperty Name="StatusValueID" ColumnName="StatusValueID" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="TCP">
+        <EntityTypeShape EntityType="TCIPModel.AdsUser" Width="1.5" PointX="3" PointY="8.125" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.Application" Width="1.5" PointX="3" PointY="11.625" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.ApplicationCIP" Width="1.5" PointX="5.25" PointY="2.125" Height="5.057109375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.Browser" Width="1.5" PointX="3" PointY="14.125" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.CommandCIP" Width="1.5" PointX="7.5" PointY="2.625" Height="4.0956022135416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.CommandType" Width="1.5" PointX="5.25" PointY="8" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.ExternalComponent" Width="1.5" PointX="5.25" PointY="10.375" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.Language" Width="1.5" PointX="3" PointY="17.125" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.Platform" Width="1.5" PointX="3" PointY="3.125" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.PlatformArchitecture" Width="1.5" PointX="0.75" PointY="3.875" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.PlatformO" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.PlatformSP" Width="1.5" PointX="0.75" PointY="6.125" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.ServiceValue" Width="1.5" PointX="3" PointY="19.625" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TCIPModel.StatusValue" Width="1.5" PointX="5.25" PointY="13" Height="1.5956835937500031" IsExpanded="true" />
+        <AssociationConnector Association="TCIPModel.FK_ApplicationCIP_AdsUser" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="8.1261528461538468" />
+          <ConnectorPoint PointX="4.875" PointY="7.7511528461538468" />
+          <ConnectorPoint PointX="4.875" PointY="4.6535546875" />
+          <ConnectorPoint PointX="5.25" PointY="4.6535546875" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_ApplicationCIP_Application" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.688460538461539" />
+          <ConnectorPoint PointX="4.84732443490112" PointY="11.34113610356042" />
+          <ConnectorPoint PointX="4.9964255650988791" PointY="11.192034973362663" />
+          <ConnectorPoint PointX="5.0625" PointY="11.125960538461541" />
+          <ConnectorPoint PointX="5.0625" PointY="5.9490840312500008" />
+          <ConnectorPoint PointX="5.25" PointY="5.9490840312500008" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_ApplicationCIP_Browser" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="14.188460538461539" />
+          <ConnectorPoint PointX="4.9375" PointY="13.750960538461541" />
+          <ConnectorPoint PointX="4.9375" PointY="3.3580253437499992" />
+          <ConnectorPoint PointX="5.25" PointY="3.3580253437499992" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_ApplicationCIP_Language" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="17.157306692307689" />
+          <ConnectorPoint PointX="4.8473244349011209" PointY="16.809982257406567" />
+          <ConnectorPoint PointX="4.9651755650988791" PointY="16.69213112720881" />
+          <ConnectorPoint PointX="5.15625" PointY="16.501056692307689" />
+          <ConnectorPoint PointX="5.15625" PointY="6.5968487031250014" />
+          <ConnectorPoint PointX="5.25" PointY="6.5968487031250014" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_ApplicationCIP_Platform" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.0057900156249993" />
+          <ConnectorPoint PointX="4.854166666666667" PointY="4.0057900156249984" />
+          <ConnectorPoint PointX="5.020833333333333" PointY="4.0057900156249993" />
+          <ConnectorPoint PointX="5.25" PointY="4.0057900156249993" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_ApplicationCIP_ServiceValue" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="19.657306692307689" />
+          <ConnectorPoint PointX="4.90625" PointY="19.251056692307689" />
+          <ConnectorPoint PointX="4.90625" PointY="5.301319359375" />
+          <ConnectorPoint PointX="5.25" PointY="5.301319359375" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_CommandCIP_ApplicationCIP" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="4.6728011067708337" />
+          <ConnectorPoint PointX="7.5" PointY="4.6728011067708337" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_CommandCIP_CommandType" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="8.797841796875" />
+          <ConnectorPoint PointX="7.7604141666666671" PointY="8.797841796875" />
+          <ConnectorPoint PointX="7.9270808333333331" PointY="8.797841796875" />
+          <ConnectorPoint PointX="8.25" PointY="8.797841796875" />
+          <ConnectorPoint PointX="8.25" PointY="6.7206022135416674" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_CommandCIP_ExternalComponent" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="11.365143229166666" />
+          <ConnectorPoint PointX="7.8437475" PointY="11.365143229166666" />
+          <ConnectorPoint PointX="7.8437475" PointY="6.7206022135416674" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_CommandCIP_StatusValue" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="13.797841796875002" />
+          <ConnectorPoint PointX="8.6562525" PointY="13.797841796875002" />
+          <ConnectorPoint PointX="8.6562525" PointY="6.7206022135416674" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_Platform_PlatformArchitecture" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.5766910807291659" />
+          <ConnectorPoint PointX="3" PointY="4.5766910807291659" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_Platform_PlatformOS" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.5478417968750016" />
+          <ConnectorPoint PointX="3.75" PointY="1.5478417968750016" />
+          <ConnectorPoint PointX="3.75" PointY="3.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="TCIPModel.FK_Platform_PlatformSP" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.8266910807291659" />
+          <ConnectorPoint PointX="3.75" PointY="6.8266910807291659" />
+          <ConnectorPoint PointX="3.75" PointY="6.0667936197916674" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

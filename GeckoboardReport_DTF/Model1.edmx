@@ -1,0 +1,520 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="aat_dtfModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="aat_dtfModelStoreContainer">
+          <EntitySet Name="agent" EntityType="aat_dtfModel.Store.agent" store:Type="Tables" Schema="aat_dtf" />
+          <EntitySet Name="filter_list" EntityType="aat_dtfModel.Store.filter_list" store:Type="Tables" Schema="aat_dtf" />
+          <EntitySet Name="job" EntityType="aat_dtfModel.Store.job" store:Type="Tables" Schema="aat_dtf" />
+          <EntitySet Name="job_settings" EntityType="aat_dtfModel.Store.job_settings" store:Type="Tables" Schema="aat_dtf" />
+          <EntitySet Name="os" EntityType="aat_dtfModel.Store.os" store:Type="Tables" Schema="aat_dtf" />
+          <EntitySet Name="schema_info" EntityType="aat_dtfModel.Store.schema_info" store:Type="Tables" Schema="aat_dtf" />
+          <EntitySet Name="testrun" EntityType="aat_dtfModel.Store.testrun" store:Type="Tables" Schema="aat_dtf" />
+          <AssociationSet Name="fk_agent_job1" Association="aat_dtfModel.Store.fk_agent_job1">
+            <End Role="job" EntitySet="job" />
+            <End Role="agent" EntitySet="agent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_filter_list_job1" Association="aat_dtfModel.Store.fk_filter_list_job1">
+            <End Role="job" EntitySet="job" />
+            <End Role="filter_list" EntitySet="filter_list" />
+          </AssociationSet>
+          <AssociationSet Name="fk_job_settings_job1" Association="aat_dtfModel.Store.fk_job_settings_job1">
+            <End Role="job" EntitySet="job" />
+            <End Role="job_settings" EntitySet="job_settings" />
+          </AssociationSet>
+          <AssociationSet Name="fk_testrun_job1" Association="aat_dtfModel.Store.fk_testrun_job1">
+            <End Role="job" EntitySet="job" />
+            <End Role="testrun" EntitySet="testrun" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="agent">
+          <Key>
+            <PropertyRef Name="JobID" />
+            <PropertyRef Name="HostName" />
+          </Key>
+          <Property Name="JobID" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Status" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="HostName" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="AgentID" Type="varchar" Nullable="false" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="filter_list">
+          <Key>
+            <PropertyRef Name="JobID" />
+            <PropertyRef Name="FullPath" />
+          </Key>
+          <Property Name="JobID" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="FullPath" Type="varchar" Nullable="false" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="job">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Submitter" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="FinishTime" Type="datetime" />
+          <Property Name="Status" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Server" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Progress" Type="double" Nullable="false" />
+          <Property Name="Submitted" Type="datetime" Nullable="false" />
+          <Property Name="Bandwidth" Type="bigint" Nullable="false" />
+          <Property Name="ETA" Type="time" />
+          <Property Name="TotalErrors" Type="int" Nullable="false" />
+          <Property Name="TotalCases" Type="varchar" MaxLength="255" />
+          <Property Name="UserFullName" Type="text" />
+          <Property Name="Memo" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="job_settings">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="CustomListFile" Type="text" />
+          <Property Name="BuildID" Type="varchar" MaxLength="45" />
+          <Property Name="EmailFrom" Type="varchar" MaxLength="255" />
+          <Property Name="EmailServer" Type="varchar" MaxLength="255" />
+          <Property Name="EmailTo" Type="varchar" MaxLength="255" />
+          <Property Name="CustomLabel" Type="varchar" MaxLength="45" />
+          <Property Name="OfficialRun" Type="bool" Nullable="false" />
+          <Property Name="VMLimit" Type="int" />
+          <Property Name="SegmentSize" Type="uint" Nullable="false" />
+          <Property Name="DisableVMOnJobCompleted" Type="bool" Nullable="false" />
+          <Property Name="Product" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="UseESXAgent" Type="bool" Nullable="false" />
+          <Property Name="LogCER" Type="bool" Nullable="false" />
+          <Property Name="ImageIndex" Type="int" />
+        </EntityType>
+        <EntityType Name="os">
+          <Key>
+            <PropertyRef Name="OSVersion" />
+            <PropertyRef Name="OSType" />
+          </Key>
+          <Property Name="OSVersion" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="OSType" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="MemorySize" Type="int" Nullable="false" />
+          <Property Name="NetConnectionType" Type="varchar" Nullable="false" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="schema_info">
+          <Key>
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="Version" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="ChangedBy" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="ModDate" Type="date" Nullable="false" />
+          <Property Name="Comments" Type="text" />
+        </EntityType>
+        <EntityType Name="testrun">
+          <Key>
+            <PropertyRef Name="FullPath" />
+            <PropertyRef Name="JobID" />
+            <PropertyRef Name="RunIndex" />
+          </Key>
+          <Property Name="FullPath" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="JobID" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="RunIndex" Type="int" Nullable="false" />
+          <Property Name="Status" Type="enum" Nullable="false" />
+          <Property Name="MachineName" Type="varchar" MaxLength="45" />
+          <Property Name="ResultStatus" Type="varchar" MaxLength="45" />
+          <Property Name="ResultSubStatus" Type="varchar" MaxLength="100" />
+          <Property Name="ModTime" Type="datetime" />
+          <Property Name="OSImageID" Type="varchar" Nullable="false" MaxLength="36" />
+          <Property Name="Message" Type="varchar" MaxLength="10000" />
+        </EntityType>
+        <Association Name="fk_agent_job1">
+          <End Role="job" Type="aat_dtfModel.Store.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="agent" Type="aat_dtfModel.Store.agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="agent">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_filter_list_job1">
+          <End Role="job" Type="aat_dtfModel.Store.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="filter_list" Type="aat_dtfModel.Store.filter_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="filter_list">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_job_settings_job1">
+          <End Role="job" Type="aat_dtfModel.Store.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="job_settings" Type="aat_dtfModel.Store.job_settings" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="job_settings">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_testrun_job1">
+          <End Role="job" Type="aat_dtfModel.Store.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="testrun" Type="aat_dtfModel.Store.testrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="testrun">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="aat_dtfModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="aat_dtfEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="agents" EntityType="aat_dtfModel.agent" />
+          <EntitySet Name="filter_list" EntityType="aat_dtfModel.filter_list" />
+          <EntitySet Name="jobs" EntityType="aat_dtfModel.job" />
+          <EntitySet Name="job_settings" EntityType="aat_dtfModel.job_settings" />
+          <EntitySet Name="os" EntityType="aat_dtfModel.o" />
+          <EntitySet Name="schema_info" EntityType="aat_dtfModel.schema_info" />
+          <EntitySet Name="testruns" EntityType="aat_dtfModel.testrun" />
+          <AssociationSet Name="fk_agent_job1" Association="aat_dtfModel.fk_agent_job1">
+            <End Role="job" EntitySet="jobs" />
+            <End Role="agent" EntitySet="agents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_filter_list_job1" Association="aat_dtfModel.fk_filter_list_job1">
+            <End Role="job" EntitySet="jobs" />
+            <End Role="filter_list" EntitySet="filter_list" />
+          </AssociationSet>
+          <AssociationSet Name="fk_job_settings_job1" Association="aat_dtfModel.fk_job_settings_job1">
+            <End Role="job" EntitySet="jobs" />
+            <End Role="job_settings" EntitySet="job_settings" />
+          </AssociationSet>
+          <AssociationSet Name="fk_testrun_job1" Association="aat_dtfModel.fk_testrun_job1">
+            <End Role="job" EntitySet="jobs" />
+            <End Role="testrun" EntitySet="testruns" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="agent">
+          <Key>
+            <PropertyRef Name="JobID" />
+            <PropertyRef Name="HostName" />
+          </Key>
+          <Property Name="JobID" Type="String" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <Property Name="HostName" Type="String" Nullable="false" />
+          <Property Name="AgentID" Type="String" Nullable="false" />
+          <NavigationProperty Name="job" Relationship="aat_dtfModel.fk_agent_job1" FromRole="agent" ToRole="job" />
+        </EntityType>
+        <EntityType Name="filter_list">
+          <Key>
+            <PropertyRef Name="JobID" />
+            <PropertyRef Name="FullPath" />
+          </Key>
+          <Property Name="JobID" Type="String" Nullable="false" />
+          <Property Name="FullPath" Type="String" Nullable="false" />
+          <NavigationProperty Name="job" Relationship="aat_dtfModel.fk_filter_list_job1" FromRole="filter_list" ToRole="job" />
+        </EntityType>
+        <EntityType Name="job">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="String" Nullable="false" />
+          <Property Name="Submitter" Type="String" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" />
+          <Property Name="FinishTime" Type="DateTime" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <Property Name="Server" Type="String" Nullable="false" />
+          <Property Name="Progress" Type="Double" Nullable="false" />
+          <Property Name="Submitted" Type="DateTime" Nullable="false" />
+          <Property Name="Bandwidth" Type="Int64" Nullable="false" />
+          <Property Name="ETA" Type="Time" />
+          <Property Name="TotalErrors" Type="Int32" Nullable="false" />
+          <Property Name="TotalCases" Type="String" />
+          <Property Name="UserFullName" Type="String" />
+          <Property Name="Memo" Type="String" />
+          <NavigationProperty Name="agents" Relationship="aat_dtfModel.fk_agent_job1" FromRole="job" ToRole="agent" />
+          <NavigationProperty Name="filter_list" Relationship="aat_dtfModel.fk_filter_list_job1" FromRole="job" ToRole="filter_list" />
+          <NavigationProperty Name="job_settings" Relationship="aat_dtfModel.fk_job_settings_job1" FromRole="job" ToRole="job_settings" />
+          <NavigationProperty Name="testruns" Relationship="aat_dtfModel.fk_testrun_job1" FromRole="job" ToRole="testrun" />
+        </EntityType>
+        <EntityType Name="job_settings">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="String" Nullable="false" />
+          <Property Name="CustomListFile" Type="String" />
+          <Property Name="BuildID" Type="String" />
+          <Property Name="EmailFrom" Type="String" />
+          <Property Name="EmailServer" Type="String" />
+          <Property Name="EmailTo" Type="String" />
+          <Property Name="CustomLabel" Type="String" />
+          <Property Name="OfficialRun" Type="Boolean" Nullable="false" />
+          <Property Name="VMLimit" Type="Int32" />
+          <Property Name="SegmentSize" Type="Int64" Nullable="false" />
+          <Property Name="DisableVMOnJobCompleted" Type="Boolean" Nullable="false" />
+          <Property Name="Product" Type="String" Nullable="false" />
+          <Property Name="UseESXAgent" Type="Boolean" Nullable="false" />
+          <Property Name="LogCER" Type="Boolean" Nullable="false" />
+          <Property Name="ImageIndex" Type="Int32" />
+          <NavigationProperty Name="job" Relationship="aat_dtfModel.fk_job_settings_job1" FromRole="job_settings" ToRole="job" />
+        </EntityType>
+        <EntityType Name="o">
+          <Key>
+            <PropertyRef Name="OSVersion" />
+            <PropertyRef Name="OSType" />
+          </Key>
+          <Property Name="OSVersion" Type="String" Nullable="false" />
+          <Property Name="OSType" Type="String" Nullable="false" />
+          <Property Name="MemorySize" Type="Int32" Nullable="false" />
+          <Property Name="NetConnectionType" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="schema_info">
+          <Key>
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="Version" Type="String" Nullable="false" />
+          <Property Name="ChangedBy" Type="String" Nullable="false" />
+          <Property Name="ModDate" Type="DateTime" Nullable="false" />
+          <Property Name="Comments" Type="String" />
+        </EntityType>
+        <EntityType Name="testrun">
+          <Key>
+            <PropertyRef Name="FullPath" />
+            <PropertyRef Name="JobID" />
+            <PropertyRef Name="RunIndex" />
+          </Key>
+          <Property Name="FullPath" Type="String" Nullable="false" />
+          <Property Name="JobID" Type="String" Nullable="false" />
+          <Property Name="RunIndex" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <Property Name="MachineName" Type="String" />
+          <Property Name="ResultStatus" Type="String" />
+          <Property Name="ResultSubStatus" Type="String" />
+          <Property Name="ModTime" Type="DateTime" />
+          <Property Name="OSImageID" Type="String" Nullable="false" />
+          <Property Name="Message" Type="String" />
+          <NavigationProperty Name="job" Relationship="aat_dtfModel.fk_testrun_job1" FromRole="testrun" ToRole="job" />
+        </EntityType>
+        <Association Name="fk_agent_job1">
+          <End Role="job" Type="aat_dtfModel.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="agent" Type="aat_dtfModel.agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="agent">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_filter_list_job1">
+          <End Role="job" Type="aat_dtfModel.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="filter_list" Type="aat_dtfModel.filter_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="filter_list">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_job_settings_job1">
+          <End Role="job" Type="aat_dtfModel.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="job_settings" Type="aat_dtfModel.job_settings" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="job_settings">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_testrun_job1">
+          <End Role="job" Type="aat_dtfModel.job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="testrun" Type="aat_dtfModel.testrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="testrun">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="aat_dtfModelStoreContainer" CdmEntityContainer="aat_dtfEntities">
+          <EntitySetMapping Name="agents">
+            <EntityTypeMapping TypeName="aat_dtfModel.agent">
+              <MappingFragment StoreEntitySet="agent">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="filter_list">
+            <EntityTypeMapping TypeName="aat_dtfModel.filter_list">
+              <MappingFragment StoreEntitySet="filter_list">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="FullPath" ColumnName="FullPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobs">
+            <EntityTypeMapping TypeName="aat_dtfModel.job">
+              <MappingFragment StoreEntitySet="job">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="Submitter" ColumnName="Submitter" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Server" ColumnName="Server" />
+                <ScalarProperty Name="Progress" ColumnName="Progress" />
+                <ScalarProperty Name="Submitted" ColumnName="Submitted" />
+                <ScalarProperty Name="Bandwidth" ColumnName="Bandwidth" />
+                <ScalarProperty Name="ETA" ColumnName="ETA" />
+                <ScalarProperty Name="TotalErrors" ColumnName="TotalErrors" />
+                <ScalarProperty Name="TotalCases" ColumnName="TotalCases" />
+                <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="job_settings">
+            <EntityTypeMapping TypeName="aat_dtfModel.job_settings">
+              <MappingFragment StoreEntitySet="job_settings">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CustomListFile" ColumnName="CustomListFile" />
+                <ScalarProperty Name="BuildID" ColumnName="BuildID" />
+                <ScalarProperty Name="EmailFrom" ColumnName="EmailFrom" />
+                <ScalarProperty Name="EmailServer" ColumnName="EmailServer" />
+                <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+                <ScalarProperty Name="CustomLabel" ColumnName="CustomLabel" />
+                <ScalarProperty Name="OfficialRun" ColumnName="OfficialRun" />
+                <ScalarProperty Name="VMLimit" ColumnName="VMLimit" />
+                <ScalarProperty Name="SegmentSize" ColumnName="SegmentSize" />
+                <ScalarProperty Name="DisableVMOnJobCompleted" ColumnName="DisableVMOnJobCompleted" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="UseESXAgent" ColumnName="UseESXAgent" />
+                <ScalarProperty Name="LogCER" ColumnName="LogCER" />
+                <ScalarProperty Name="ImageIndex" ColumnName="ImageIndex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os">
+            <EntityTypeMapping TypeName="aat_dtfModel.o">
+              <MappingFragment StoreEntitySet="os">
+                <ScalarProperty Name="OSVersion" ColumnName="OSVersion" />
+                <ScalarProperty Name="OSType" ColumnName="OSType" />
+                <ScalarProperty Name="MemorySize" ColumnName="MemorySize" />
+                <ScalarProperty Name="NetConnectionType" ColumnName="NetConnectionType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schema_info">
+            <EntityTypeMapping TypeName="aat_dtfModel.schema_info">
+              <MappingFragment StoreEntitySet="schema_info">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+                <ScalarProperty Name="ModDate" ColumnName="ModDate" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="testruns">
+            <EntityTypeMapping TypeName="aat_dtfModel.testrun">
+              <MappingFragment StoreEntitySet="testrun">
+                <ScalarProperty Name="FullPath" ColumnName="FullPath" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="RunIndex" ColumnName="RunIndex" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="ResultStatus" ColumnName="ResultStatus" />
+                <ScalarProperty Name="ResultSubStatus" ColumnName="ResultSubStatus" />
+                <ScalarProperty Name="ModTime" ColumnName="ModTime" />
+                <ScalarProperty Name="OSImageID" ColumnName="OSImageID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="aat_dtfModel.agent" Width="1.5" PointX="3" PointY="1.5" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="aat_dtfModel.filter_list" Width="1.5" PointX="3" PointY="4.25" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="aat_dtfModel.job" Width="1.5" PointX="0.75" PointY="5.75" Height="4.480205078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="aat_dtfModel.job_settings" Width="1.5" PointX="3" PointY="6.5" Height="4.0956022135416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="aat_dtfModel.o" Width="1.5" PointX="5.75" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="aat_dtfModel.schema_info" Width="1.5" PointX="5.75" PointY="3.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="aat_dtfModel.testrun" Width="1.5" PointX="3" PointY="11.375" Height="3.1340950520833317" IsExpanded="true" />
+        <AssociationConnector Association="aat_dtfModel.fk_agent_job1" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="5.75" />
+          <ConnectorPoint PointX="1.5" PointY="2.4901432291666667" />
+          <ConnectorPoint PointX="3" PointY="2.4901432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="aat_dtfModel.fk_filter_list_job1" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.9062525" PointY="5.75" />
+          <ConnectorPoint PointX="1.9062525" PointY="4.9687474999999992" />
+          <ConnectorPoint PointX="3" PointY="4.9687474999999992" />
+        </AssociationConnector>
+        <AssociationConnector Association="aat_dtfModel.fk_job_settings_job1" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.3651025390625" />
+          <ConnectorPoint PointX="3" PointY="8.3651025390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="aat_dtfModel.fk_testrun_job1" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="10.230205078125" />
+          <ConnectorPoint PointX="1.5" PointY="12.942047526041666" />
+          <ConnectorPoint PointX="3" PointY="12.942047526041666" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
